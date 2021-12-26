@@ -5,9 +5,9 @@ import android.util.Log
 import androidx.core.graphics.drawable.toBitmap
 import com.google.mlkit.vision.label.ImageLabel
 
-class HappinessCalc {
+class HappinessCalculator {
 
-    fun isHappy(image: Drawable , onSuccess: (Level)-> Unit){
+    fun analyseImageHappiness(image: Drawable, onSuccess: (HappinessLevel)-> Unit){
           ImageAnalyser().detectImage(
               image.toBitmap(),
               {
@@ -19,19 +19,19 @@ class HappinessCalc {
           )
       }
 
-    private fun getLevel(labels:List<ImageLabel>): Level {
+    private fun getLevel(labels:List<ImageLabel>): HappinessLevel {
         Log.i("TTT",labels.map { it.text }.toString())
         val happy = labels.filter { it.text in happyLabel }
         val sad = labels.filter { it.text in sadLabel }
         return when {
             happy.size < sad.size -> {
-                Level.SAD
+                HappinessLevel.SAD
             }
             happy.size > sad.size -> {
-                Level.HAPPINESS
+                HappinessLevel.HAPPY
             }
             else -> {
-                Level.NORMAL
+                HappinessLevel.NORMAL
             }
         }
     }

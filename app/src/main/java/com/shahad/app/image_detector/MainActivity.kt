@@ -3,9 +3,8 @@ package com.shahad.app.image_detector
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.shahad.app.happiness_detector.HappinessCalc
+import com.shahad.app.happiness_detector.HappinessCalculator
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
 
         image?.let {
-            HappinessCalc().isHappy(it){
+            HappinessCalculator().analyseImageHappiness(it){
                 Log.i("TTT1",it.toString())
             }
         }
