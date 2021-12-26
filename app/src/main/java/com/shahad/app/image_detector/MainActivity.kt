@@ -11,17 +11,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val image= ContextCompat.getDrawable(this, R.drawable.war)
-
+        val image= ContextCompat.getDrawable(this, R.drawable.war)?.toBitmap()
 
         image?.let {
-            HappinessCalculator().analyseImageHappiness(it.toBitmap()){
+            HappinessCalculator().analyseImageHappiness(it){
                 Log.i("TTT1",it.toString())
             }
         }
-
-
-
 
     }
 }
