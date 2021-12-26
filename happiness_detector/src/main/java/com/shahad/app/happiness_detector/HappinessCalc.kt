@@ -4,14 +4,11 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.core.graphics.drawable.toBitmap
 import com.google.mlkit.vision.label.ImageLabel
-import org.koin.java.KoinJavaComponent.inject
 
 class HappinessCalc {
 
-    private val imageAnalyser: ImageAnalyser by inject(ImageAnalyser::class.java)
-
     fun isHappy(image: Drawable , onSuccess: (Level)-> Unit){
-          imageAnalyser.detectImage(
+          ImageAnalyser().detectImage(
               image.toBitmap(),
               {
                     onSuccess(getLevel(it))
