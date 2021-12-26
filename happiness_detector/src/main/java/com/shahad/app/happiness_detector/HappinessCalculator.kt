@@ -1,20 +1,19 @@
 package com.shahad.app.happiness_detector
 
-import android.graphics.drawable.Drawable
+import android.graphics.Bitmap
 import android.util.Log
-import androidx.core.graphics.drawable.toBitmap
 import com.google.mlkit.vision.label.ImageLabel
 
 class HappinessCalculator {
 
-    fun analyseImageHappiness(image: Drawable, onSuccess: (HappinessLevel)-> Unit){
+    fun analyseImageHappiness(bitmap: Bitmap, onResult: (HappinessLevel)-> Unit){
           ImageAnalyser().detectImage(
-              image.toBitmap(),
+              bitmap,
               {
-                    onSuccess(getLevel(it))
+                    onResult(getLevel(it))
               },
               {
-                  Log.i("HAPPINESS_DETECTOR","Fail:  ${it.message.toString()}")
+                  onResult(HappinessLevel.UNKNOWN)
               }
           )
       }

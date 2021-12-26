@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import com.shahad.app.happiness_detector.HappinessCalculator
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
 
         image?.let {
-            HappinessCalculator().analyseImageHappiness(it){
+            HappinessCalculator().analyseImageHappiness(it.toBitmap()){
                 Log.i("TTT1",it.toString())
             }
         }
