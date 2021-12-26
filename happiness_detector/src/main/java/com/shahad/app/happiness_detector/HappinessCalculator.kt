@@ -2,6 +2,7 @@ package com.shahad.app.happiness_detector
 
 import android.graphics.Bitmap
 import com.google.mlkit.vision.label.ImageLabel
+import java.util.*
 
 class HappinessCalculator {
 
@@ -36,12 +37,12 @@ class HappinessCalculator {
 
     private fun getNumberOfLabelsMatchInPatten(labels: List<ImageLabel>, pattern: String): Int =
         labels.map {
-            Regex(pattern).containsMatchIn(it.text)
+            Regex(pattern).containsMatchIn(it.text.lowercase(Locale.getDefault()))
         }.filter { it }.size
 
     companion object{
-        const val happyLabel = "Comics|Circus|Smile|Laugh|Balloon|Picnic|Clown|Christmas|Dance|Santa claus|Thanksgiving|Vacation|Love|Money|Shikoku|Pet|Pizza|Lipstick|Cool|Duck|Turtle|Dog|Rainbow|Flower|Airplane|Butterfly|Marathon|Cake|Fireworks|Baby|Bride|Joker|Selfie|Dress|Fun|Leisure|River"
-        const val sadLabel = "Bullfighting|Junk|Shipwreck|Caving|Jungle|Fire|Cairn terrier|Forest|Militia|Volcano|Rocket|Bangs|Lightning|Army|Storm|Helmet"
+        const val happyLabel = "comics|circus|smile|laugh|balloon|picnic|clown|christmas|dance|santa claus|thanksgiving|vacation|love|money|shikoku|pet|pizza|lipstick|cool|duck|turtle|dog|rainbow|flower|airplane|butterfly|marathon|cake|fireworks|baby|bride|joker|selfie|dress|fun|leisure|river|blessed|parturition|birth|occasion|joyous|lighthearted|celebration|carnival|party"
+        const val sadLabel = "bullfighting|junk|shipwreck|caving|jungle|fire|cairn terrier|forest|militia|volcano|rocket|bangs|lightning|army|storm|helmet|funeral|sad|awful|burial|dead|depressing|farewell|misery|depression|pain|upset|torture|battle|combat|blood|fire|flood|hospital|weapon|gun|monster|fear|horror|accident|cry|tears|dark"
     }
 
 }

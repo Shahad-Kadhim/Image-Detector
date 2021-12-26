@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         image?.let {
             HappinessCalculator().analyseImageHappiness(it){
-                Log.i("TTT1",it.toString())
+                Log.i("LOG_TAG",it.toString())
             }
         }
 
