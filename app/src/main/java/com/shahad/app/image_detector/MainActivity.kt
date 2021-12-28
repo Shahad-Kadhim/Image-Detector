@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import com.shahad.app.happiness_detector.HappinessCalculator
+import com.shahad.app.happiness_detector.HappinessCalculatorImpl
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val image= ContextCompat.getDrawable(this, R.drawable.war)?.toBitmap()
 
         image?.let {
-            HappinessCalculator().analyseImageHappiness(it){
+            HappinessCalculatorImpl().analyseImageHappiness(it){
                 Log.i("LOG_TAG",it.toString())
             }
         }
