@@ -6,12 +6,11 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.label.ImageLabel
 import com.google.mlkit.vision.label.ImageLabeling
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
-import javax.inject.Inject
 
-internal class ImageAnalyser @Inject constructor(){
+internal class ImageAnalyser{
 
     private fun getImage(bitmap: Bitmap) =
-        InputImage.fromBitmap(bitmap,0)
+        InputImage.fromBitmap(bitmap, ROTATION_DEGREE)
 
     private val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
 
@@ -23,6 +22,10 @@ internal class ImageAnalyser @Inject constructor(){
         labeler.process(getImage(bitmap))
             .addOnSuccessListener(onSuccess)
             .addOnFailureListener(onFail)
+    }
+
+    companion object{
+        const val ROTATION_DEGREE = 0
     }
 
 }

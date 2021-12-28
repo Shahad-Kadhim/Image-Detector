@@ -4,5 +4,4 @@ enum class HappinessLevel {
     HAPPY ,
     SAD ,
     NORMAL,
-    UNKNOWN
 }

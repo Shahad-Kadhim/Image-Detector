@@ -13,36 +13,41 @@ class HappinessCalculator {
                     onResult(getLevel(it))
               },
               {
-                  onResult(HappinessLevel.UNKNOWN)
+                  throw Exception("Fail: ${it.message}")
               }
           )
       }
 
     private fun getLevel(labels:List<ImageLabel>): HappinessLevel =
-        when(happinessAverage(labels)) {
-            in 0.0..0.49 ->  HappinessLevel.SAD
-            in 0.6..1.0 -> HappinessLevel.HAPPY
+        when(getHappinessAverage(labels)) {
+            in MINIMUM_SADNESS..MAXIMUM_SADNESS ->  HappinessLevel.SAD
+            in MINIMUM_HAPPINESS..MAXIMUM_HAPPINESS -> HappinessLevel.HAPPY
             else -> HappinessLevel.NORMAL
         }
 
 
-    private fun happinessAverage(labels: List<ImageLabel>): Double {
+    private fun getHappinessAverage(labels: List<ImageLabel>): Double {
 
-        val numberOfHappinessLabel= getNumberOfLabelsMatchInPatten(labels, happyLabel)
-
-        val numberOfSadnessLabel= getNumberOfLabelsMatchInPatten(labels, sadLabel)
+        val numberOfHappinessLabel= getNumberOfLabelsInList(labels, happyLabels)
+        val numberOfSadnessLabel= getNumberOfLabelsInList(labels, sadLabels)
 
         return numberOfHappinessLabel/(numberOfHappinessLabel+numberOfSadnessLabel).toDouble()
     }
 
-    private fun getNumberOfLabelsMatchInPatten(labels: List<ImageLabel>, pattern: String): Int =
-        labels.map {
-            Regex(pattern).containsMatchIn(it.text.lowercase(Locale.getDefault()))
+    private fun getNumberOfLabelsInList(imageLabels: List<ImageLabel>, storedLabels: List<String>): Int =
+        imageLabels.map { imageLabel ->
+           imageLabel.text.lowercase(Locale.getDefault())
+        }.map { label ->
+            storedLabels.contains(label)
         }.filter { it }.size
 
     companion object{
-        const val happyLabel = "comics|circus|smile|laugh|balloon|picnic|clown|christmas|dance|santa claus|thanksgiving|vacation|love|money|shikoku|pet|pizza|lipstick|cool|duck|turtle|dog|rainbow|flower|airplane|butterfly|marathon|cake|fireworks|baby|bride|joker|selfie|dress|fun|leisure|river|blessed|parturition|birth|occasion|joyous|lighthearted|celebration|carnival|party"
-        const val sadLabel = "bullfighting|junk|shipwreck|caving|jungle|fire|cairn terrier|forest|militia|volcano|rocket|bangs|lightning|army|storm|helmet|funeral|sad|awful|burial|dead|depressing|farewell|misery|depression|pain|upset|torture|battle|combat|blood|fire|flood|hospital|weapon|gun|monster|fear|horror|accident|cry|tears|dark"
+        val happyLabels= listOf("comics","circus","smile","laugh","balloon","picnic","clown","christmas","dance","santa claus","thanksgiving","vacation","love","money","shikoku","pet","pizza","lipstick","cool","duck","turtle","dog","rainbow","flower","airplane","butterfly","marathon","cake","fireworks","baby","bride","joker","selfie","dress","fun","leisure","river","blessed","parturition","birth","occasion","joyous","lighthearted","celebration","carnival","party")
+        val sadLabels= listOf("bullfighting","junk","shipwreck","caving","jungle","fire","cairn terrier","forest","militia","volcano","rocket","bangs","lightning","army","storm","helmet","funeral","sad","awful","burial","dead","depressing","farewell","misery","depression","pain","upset","torture","battle","combat","blood","fire","flood","hospital","weapon","gun","monster","fear","horror","accident","cry","tears","dark")
+        const val MAXIMUM_SADNESS = 0.49
+        const val MINIMUM_SADNESS = 0.0
+        const val MAXIMUM_HAPPINESS = 1.0
+        const val MINIMUM_HAPPINESS = 0.6
     }
 
 }
