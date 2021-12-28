@@ -13,9 +13,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val image= ContextCompat.getDrawable(this, R.drawable.war)?.toBitmap()
 
+        Log.i("LOG_TAG", "1")
+
+        val text ="I'm very Happy :) "
+        HappinessCalculatorImpl().analyseTextHappiness(text){
+            Log.i("LOG_TEXT", it.toString())
+        }
+        Log.i("LOG_TAG", "2")
+
         image?.let {
             HappinessCalculatorImpl().analyseImageHappiness(it){
-                Log.i("LOG_TAG",it.toString())
+                Log.i("LOG_IMAGE",it.toString())
             }
         }
 

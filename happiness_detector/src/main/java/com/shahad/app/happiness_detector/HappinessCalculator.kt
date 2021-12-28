@@ -6,4 +6,6 @@ internal interface HappinessCalculator {
 
     fun analyseImageHappiness(bitmap: Bitmap, onResult: (HappinessLevel)-> Unit)
 
+    fun analyseTextHappiness(text: String, onResult: (HappinessLevel) -> Unit)
+
 }
