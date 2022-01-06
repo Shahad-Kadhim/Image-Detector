@@ -69,7 +69,7 @@ class HappinessCalculator: IHappinessCalculator {
     }
 
     companion object{
-        private var happyLabels = mutableListOf("comics","circus","smile","laugh","balloon","picnic","clown","christmas","dance","santa claus","thanksgiving","vacation","love","money","shikoku","pet","pizza","lipstick","cool","duck","turtle","dog","rainbow","flower","airplane","butterfly","marathon","cake","fireworks","baby","bride","joker","selfie","dress","fun","leisure","river","blessed","parturition","birth","occasion","joyous","lighthearted","celebration","carnival","party","happy")
+        private var happyLabels = mutableListOf("comics","toy","bird","circus","smile","laugh","balloon","picnic","clown","christmas","dance","santa claus","thanksgiving","vacation","love","money","shikoku","pet","pizza","lipstick","cool","duck","turtle","dog","rainbow","flower","airplane","butterfly","marathon","cake","fireworks","baby","bride","joker","selfie","dress","fun","leisure","river","blessed","parturition","birth","occasion","joyous","lighthearted","celebration","carnival","party","happy")
         private var sadLabels = mutableListOf("bullfighting","junk","shipwreck","caving","jungle","fire","cairn terrier","forest","militia","volcano","rocket","bangs","lightning","army","storm","helmet","funeral","sad","awful","burial","dead","depressing","farewell","misery","depression","pain","upset","torture","battle","combat","blood","fire","flood","hospital","weapon","gun","monster","fear","horror","accident","cry","tears","dark")
         private const val MINIMUM_SADNESS = 0.0
         private const val MAXIMUM_SADNESS = 0.49
